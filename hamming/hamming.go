@@ -8,13 +8,13 @@ func Distance(a, b string) (int, error) {
 		return 0, errors.New("Hamming distance is only defined for sequences of equal length")
 	}
 
-	var distance int = 0
+	var differenceCount int = 0
 
-	for i, j := 0, 0; i < len(a); i, j = i+1, j+1 {
-		if a[i] != b[j] {
-			distance += 1
+	for i := 0; i < len(a); i++ {
+		if a[i] != b[i] {
+			differenceCount += 1
 		}
 	}
 
-	return distance, nil
+	return differenceCount, nil
 }
