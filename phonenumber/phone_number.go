@@ -3,14 +3,13 @@ package phonenumber
 
 import (
 	"errors"
-	"log"
 	"strconv"
 	"strings"
 )
 
-// removePrefix is a helper function that receives a delimiter, removes a the delimiter
+// removeCharacter is a helper function that receives a delimiter, removes the delimiter
 // and returns the updated string.
-func removePrefix(s, delimiter string) string {
+func removeCharacter(s, delimiter string) string {
 	if strings.HasPrefix(s, delimiter) {
 		s = strings.Replace(s, delimiter, "", 1)
 	}
@@ -19,11 +18,7 @@ func removePrefix(s, delimiter string) string {
 }
 
 func checkCode(digit string) bool {
-	d, err := strconv.Atoi(string(digit))
-
-	if err != nil {
-		log.Fatal(err)
-	}
+	d, _ := strconv.Atoi(string(digit))
 
 	if d < 2 {
 		return true
@@ -34,8 +29,8 @@ func checkCode(digit string) bool {
 
 // Number receives a phone number and cleans it up to match the North America Number Planning code.
 func Number(phoneNumber string) (string, error) {
-	phoneNumber = removePrefix(phoneNumber, "+1")
-	phoneNumber = removePrefix(phoneNumber, "1")
+	phoneNumber = removeCharacter(phoneNumber, "+1")
+	phoneNumber = removeCharacter(phoneNumber, "1")
 
 	// removes every non-digit character from the phoneNumber.
 	for _, char := range phoneNumber {
