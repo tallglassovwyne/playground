@@ -1,0 +1,18 @@
+"""Convert a number into its corresponding raindrop sound
+"""
+def convert(number: int) -> str:
+    """Convert a number to its corresponding raindrop sound.
+
+    Args:
+        number: integer to convert.
+    Returns:
+        str: raindrop sound.
+    """
+    result = ""
+    if number % 3 == 0:
+        result += "Pling" 
+    if number % 5 == 0:
+        result += "Plang"
+    if number % 7 == 0:
+        result += "Plong"
+    return result or str(number)
